@@ -668,14 +668,14 @@ char* getKey(char* msg)
 int getValue(char* msg)
 {
 
-  if (isDebugMode)
+  if (isDebug)
   {
     Serial.println("Getting value");
   }
 
   int colonPosition = getColonPosition(msg);
 
-  if (isDebugMode)
+  if (isDebug)
   {
     Serial.print("  Colon position: ");
     Serial.println(colonPosition);
@@ -683,7 +683,7 @@ int getValue(char* msg)
 
   int valueLength = strlen(msg)-colonPosition-1;
 
-  if (isDebugMode)
+  if (isDebug)
   {
     Serial.print("  Value length: ");
    Serial.println(valueLength);
@@ -691,7 +691,7 @@ int getValue(char* msg)
 
   int valueStartPosition = colonPosition+1;
 
-  if (isDebugMode)
+  if (isDebug)
   {
     Serial.print("  Value start position: ");
     Serial.println(valueStartPosition);
@@ -699,7 +699,7 @@ int getValue(char* msg)
 
   int value = readInt(msg, valueStartPosition, valueLength);
   
-  if (isDebugMode)
+  if (isDebug)
   {
     Serial.print("  Value: ");
     Serial.println(value);
@@ -714,7 +714,7 @@ int getValue(char* msg)
 int getColonPosition(char* msg)
 {
 
-  if (isDebugMode)
+  if (isDebug)
   {
     Serial.print("Getting colon position from: ");
     Serial.println(msg);
