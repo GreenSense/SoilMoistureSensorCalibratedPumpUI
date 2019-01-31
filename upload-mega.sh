@@ -6,4 +6,4 @@ fi
 
 echo "Port: $PORT_NAME"
 
-pio run --target upload megaatmega2560 --upload-port=$PORT_NAME
+pio run --target upload --environment megaatmega2560 --upload-port=$PORT_NAME

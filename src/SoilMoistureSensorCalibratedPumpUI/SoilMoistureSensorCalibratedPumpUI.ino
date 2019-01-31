@@ -1,7 +1,7 @@
 #include <LiquidCrystal.h>
 #include <duinocom.h>
 
-bool isDebug = 1;
+bool isDebug = false;
 
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 
@@ -58,6 +58,8 @@ void loop()
   handleMsg();
 
   drawMenu();
+  
+  delay(1);
 }
 
 void handleButtons()
@@ -79,7 +81,7 @@ int read_LCD_buttons()
 {
   adc_key_in = analogRead(0);      // read the value from the sensor 
  
- // Serial.println(adc_key_in);
+  //Serial.println(adc_key_in);
  
  // my buttons when read are centered at these valies: 0, 144, 329, 504, 741
  // we add approx 50 to those values and check to see if we are close
