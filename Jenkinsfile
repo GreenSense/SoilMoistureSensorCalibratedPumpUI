@@ -39,12 +39,6 @@ pipeline {
                 sh 'sh build.sh'
             }
         }
-        stage('Test') {
-            when { expression { !shouldSkipBuild() } }
-            steps {
-                sh 'echo "Testing skipped because it's not yet implemented." #sh test.sh'
-            }
-        }
         stage('Clean') {
             when { expression { !shouldSkipBuild() } }
             steps {
