@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    triggers {
-       pollSCM('*/10 * * * *')
-    }
     options {
         disableConcurrentBuilds();
     }
@@ -42,6 +39,36 @@ pipeline {
                 sh 'sh build.sh'
             }
         }
+        stage('Test') {
+            when { expression { !shouldSkipBuild() } }
+            steps {
+                sh 'echo "Testing skipped because it's not yet implemented." #sh test.sh'
+            }
+        }
+        stage('Clean') {
+            when { expression { !shouldSkipBuild() } }
+            steps {
+                sh 'sh clean.sh'
+            }
+        }
+        stage('Graduate') {
+            when { expression { !shouldSkipBuild() } }
+            steps {
+                sh 'sh graduate.sh'
+            }
+        }
+        stage('Increment Version') {
+            when { expression { !shouldSkipBuild() } }
+            steps {
+                sh 'sh increment-version.sh'
+            }
+        } 
+        stage('Push Version') {
+            when { expression { !shouldSkipBuild() } }
+            steps {
+                sh 'sh push-version.sh'
+            }
+        } 
     }
     post {
         success() {
